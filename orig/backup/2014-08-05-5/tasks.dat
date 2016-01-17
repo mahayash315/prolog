@@ -1,0 +1,7 @@
+% task(tid,taskName,ETP,deadline,dependentTasks)
+
+task(t1,task1,10,-,[]).
+task(t2,task2,22,-,[t1]).
+task(t3,task3,45,-,[]).
+task(t4,task4,50,date(2014,8,8,12,0,0,0,-,-),[t2,t3]).
+task(t5,task5,10,-,[]).

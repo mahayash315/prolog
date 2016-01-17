@@ -1,0 +1,232 @@
+\documentclass[11pt]{jarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[dvips,dvipdfmx]{graphicx,color}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% format stuffs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\oddsidemargin}{0.0in} 
+\setlength{\evensidemargin}{0.0in} 
+\setlength{\textwidth}{6.5in} 
+\setlength{\textheight}{9.0in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0mm}
+\setlength{\marginparwidth}{0.5in}
+%\setlength{\abovecaptionskip}{0mm}
+%\setlength{\belowcaptionskip}{0mm}
+%\setlength{\intextsep}{0pt}
+%\setlength{\textfloatsep}{0pt}
+%\setcounter{topnumber}{100}
+%\setcounter{bottomnumber}{100}
+%\setcounter{totalnumber}{100}
+\renewcommand{\topfraction}{1.0}
+\renewcommand{\bottomfraction}{1.0}
+\renewcommand{\textfraction}{0.0}
+\renewcommand{\floatpagefraction}{0.0}
+\renewcommand{\baselinestretch}{1.0}
+\renewcommand{\refname}{テーマ選択に参考した文献}
+%\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% math symbols and commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\eq}[1]{(\ref{#1})}
+\newcommand{\mtx}[2]{\left[\begin{array}{#1} #2 \end{array}\right]}
+\newcommand{\mycase}[1]{\left\{\begin{array}{ll} #1 \end{array} \right.}
+\newcommand{\mb}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\lw}[1]{\smash{\lower2.ex\hbox{#1}}}
+\newcommand{\zero}{\mathbf{0}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\myred}[1]{\textcolor{red}{#1}}
+\newcommand{\myredbf}[1]{\textcolor{red}{\bf #1}}
+\newcommand{\myblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\mybluebf}[1]{\textcolor{blue}{\bf #1}}
+\newcommand{\mydarkblue}[1]{\textcolor[rgb]{0.0,0.0,0.5}{#1}}
+\newcommand{\mygreen}[1]{\textcolor[rgb]{0.0,0.5,0.0}{#1}}
+\newcommand{\mygreenbf}[1]{\textcolor[rgb]{0.0,0.5,0.0}{\bf #1}}
+\newcommand{\mypurple}[1]{\textcolor[rgb]{0.5,0.0,0.5}{#1}}
+\newcommand{\mypurplebf}[1]{\textcolor[rgb]{0.5,0.0,0.5}{\bf #1}}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{mypurple}{rgb}{0.5,0.0,0.5}
+\definecolor{mythistle}{RGB}{216,131,183}
+\definecolor{mydarkgreen}{rgb}{0.0,0.4,0.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{terminal}[1]
+{
+\VerbatimEnvironment
+\def\@tmpCaption{#1}
+\hfill
+\begin{minipage}{0.8\hsize}
+\begin{screen}
+\small
+\def\baselinestretch{.75}
+\begin{Verbatim}
+}
+{
+\end{Verbatim}
+\end{screen}
+\end{minipage} \hfill\null \\\\
+\vspace{0.5em} \centering \small {\@tmpCaption}
+
+}
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ここからがレポートの記述
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\centerline{{\huge \sc Intelligence Programming I}} \smallskip
+\centerline{{\Huge \sc Final Exercise}}
+\centerline{Submitted on 2014/08/07 \textbullet \hspace{1pt} CSb 24115113 Masayuki Hayashi (林 政行)}
+\noindent \line(1,0){470} \\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\Large \bf Theme (テーマ)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\noindent
+Tasks to Schedule (スケジュール自動生成)
+
+\vspace{2.0em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\Large \bf Why I chose this theme (テーマ選択理由)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\noindent
+I chose 'Tasks to Schedule' as the theme. There are mainly two reasons
+for choosing this theme: my long-cherished program, and what I have
+learned from the past exercise.
+
+\vspace{0.5em} \noindent
+I often have had an feeling that, if I could completely rely on a
+program for making my own schedule and managing it, that would be useful
+and could reduce such mistakes as wasting time without recognizing
+exactly what I need to do at a certain time or completely forgetteing
+the think I actually need to do. Therefore, I have wanted such, in a
+sense, 'artificial intelligence program.'
+
+\vspace{0.5em} \noindent
+Having such feeling, the things I have learned through the exercises of
+this class made me have an idea that I may be able to make a program
+that generates my own schedule from the tasks that I have. Therefore, I
+chose this subject as my theme this time.
+
+\bigskip
+
+このテーマ「スケジュール自動生成」を選んだ理由として、自分のスケジュール
+管理を自動で行ってくれるプログラムがかねてから欲しかったこと、ならびに、
+今回の演習の応用課題を通して、制約充足問題をPrologで解く方法が学べ、それ
+を今回の課題の解決で使えると考えたからである。
+
+こなすべきタスクから最適なスケジューリングを作成し、それを管理してくれる
+ようなプログラムがあれば、今やるべきことを正しく認識し、期日に間に合わな
+かったり、完全にすべきことを忘れていた、といったミスを減らすことができる
+だろうという考えもあり、そのようなある種のAIプログラムが欲しかった。
+
+このような考えを持ち、本演習で学んだことを踏まえ、もしかしたらスケジュー
+ル自動生成を行うプログラムが作れるかもしれないと思い、今回このテーマを選
+択した。
+
+\vspace{2.0em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\Large \bf プログラム内容の概要}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+今回作成したプログラムでは、タスクからスケジュールを作成する処理を、重み
+付き制約充足問題(VCSP)を解くことで実現することを試みた。人がスケジュール
+を作成する際に、タスクの実行順序や期日を考慮してスケジュール日時を決める、
+という方法をとると考えられるが、これらのスケジュール作成の際に考慮すべき
+内容は、制約としてとらえることができ、各制約に異なる重みを持たせたVCSPを
+解くことで、制約の優先度を考慮したスケジュールが作れるようになると考え、
+このような方法をとった。
+
+今回の問題をVCSPに定式化するにあたって、スケジュール期間をある範囲
+($N_{day}$日間,$N_{time}$時間)に絞った。その上で各日のスケジュール対象の
+時間、およびタスクを10分ごとに分割し、変数$x_{ij} \in X$を$i$日目の$j$
+時間目、値域Dを分割したタスク、制約の集合Cを前述したスケジュール作成の際
+に考慮すべき条件とし、適当な評価構造$S$、評価関数$\phi$を通常の加算とし
+て、VCSPにおける今回のスケジューリングの問題VPを$VP=(X,D,C,S,\phi)$とい
+う構造で表現した。
+
+制約充足問題を解く方法としては、各変数に順番に、制約を満たす値を割り
+当て、解を見つける方法、各変数間の制約、アークに注目し、アーク無矛盾な値
+の割り当てを見つけることで解を見つける方法、といった完全アルゴリズムがあ
+るが、今回は計算量を減らすことを考え、本演習の応用課題で用いた
+Min-Conflicts,ならびに局所探索をすることで解を探すStochastic Hill
+Climbingを組み合わせた、近似アルゴリズムを使って解を得る手法を用いた。
+
+\vspace{2.0em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\Large \bf 工夫したところ}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+工夫した点としては、再スケジューリング時に前回のスケジューリング結果から
+大幅な変更が内容にする制約を加える点、できるだけ局所解に至らないように、
+かつ解が収束するように、Simulated Annealingを踏まえたランダムな値選択を
+行う方法をとった点である。
+
+前者は意図した通り、再スケジューリング時に前回のスケジューリング結果とは
+それほど変わらないようにする効果が得られたが、後者は、考慮が足りなかった
+部分もあり、制約が少ない場合に、ランダム値の選択を無駄に行うために、解の
+収束に時間が掛かってしまう結果を招いた。
+
+
+\vspace{2.0em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\Large \bf 問題点}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+今回作成したプログラムでは、制約の重みを最後まで適切に設定することができ
+ず、制約が充足している解においても評価値が0にならず、無限に解の探索を続
+けてしまう問題を持っている。この問題の表面上の解決を図り、Simulated
+Annealing を用いて、解を収束させる方法を取り入れたが、これは完全に制約を
+充足しなくても解を求める、という意味では問題を解決しているが、本来は重み
+を正しく設定することが本質的な問題の解決方法であり、今回はそれが達成でき
+なかった。
+
+\vspace{2.0em}
+
+\small
+\begin{thebibliography}{9}
+ \bibitem{isomura} 磯村 厚誌, 伊藤 孝行, 大囿 忠親, 新谷 虎松\mbox{}\\
+	 ナーススケジューリングシステムにおける動的重み付きCSPに基づく再
+	 スケジューリング機能の実装\\
+	 情報処理学会第66回全国大会
+\end{thebibliography}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ここまでがレポートの記述
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,11 @@
+% schedule(date(Y,M,D,H,I,S,0,-,-),tid,isFixed)
+
+% static schedules:
+schedule(date(2014,8,4,8,0,0,0,-,-),t1,true).
+
+
+% dynamic schedules:
+schedule(date(2014,8,4,9,0,0.0,0,-,-),t2,false).
+schedule(date(2014,8,5,9,0,0.0,0,-,-),t3,false).
+schedule(date(2014,8,7,10,0,0.0,0,-,-),t4,false).
+schedule(date(2014,8,10,11,0,0.0,0,-,-),t5,false).

@@ -1,0 +1,242 @@
+% rep01: 第01回 演習課題レポート
+% 2014年04月17日      by 24115113 名前: 林 政行
+%
+% 教科書の練習 (1.2), (1.5), (1.6)を解いてレポートとして提出する。
+%
+% 以下に教科書の例題 1.8 のプログラムを書く
+% [述語の説明]
+%  parent(X, Y)     : X は Y の親である
+%  female(X)        : X は 女性である
+%  male(X)          : X は男性である
+%  offspring(X, Y)  : X は Y の子孫である
+%  mother(X, Y)     : X は Y の母親である
+%  sister(X, Y)     : X は Y の姉または妹である
+%  predecessor(X, Y): X は Y の先祖である
+%
+% /* ここから例題 1.8 のプログラム */
+
+parent(pam, bob).
+parent(tom, bob).
+parent(tom, liz).
+parent(bob, ann).
+parent(bob, pat).
+parent(pat, jim).
+
+female(pam).
+male(tom).
+male(bob).
+female(liz).
+female(ann).
+female(pat).
+male(jim).
+
+offspring(Y, X) :-
+ parent(X, Y).
+
+mother(X, Y) :-
+ parent(X, Y),
+ female(X).
+
+grandparent(X, Z) :-
+ parent(X, Y),
+ parent(Y, Z).
+
+sister(X, Y) :-
+ parent(Z, X),
+ parent(Z, Y),
+ female(X),
+ different(X, Y).
+
+predecessor(X, Z) :-
+ parent(X, Z).
+
+predecessor(X, Z) :-
+ parent(X, Y),
+ predecessor(Y, Z).
+
+% /* ここまで例題 1.8 のプログラム */
+%
+
+
+%
+% 以下に注意事項で書かれた追加ルールを書く。
+% [述語の説明]
+%  different(X, Y): X と Y は異なる
+%
+% /* ここから追加ルール */
+
+different(X, Y) :- X \== Y.
+
+% /* ここまで追加ルール */
+%
+
+
+% -----------------------------------------------------------------------------------
+% (練習 1.2) parent 関係を解くプログラム (テキスト 6 ページ)
+%  次の質問を Prolog で表す.
+%  (a) Pat の親は誰か
+%  (b) Liz は子供をもつか
+%  (c) Pat の祖父母は誰か
+% 
+
+%
+%  (a) Pat の親は誰か
+%
+
+/*
+   (実行例)
+
+  ?- parent(X, pat).
+  X = bob.
+*/
+
+%
+% (b) Liz は子供をもつか
+%
+
+/*
+   (実行例)
+
+  ?- parent(liz, X).
+  false.
+*/
+
+%
+% (c) Pat の祖父母は誰か
+%
+
+/*
+   (実行例)
+
+  ?- parent(X, Y), parent(Y, pat).
+  X = pam,
+  Y = bob ;
+  X = tom,
+  Y = bob ;
+  false.
+*/
+
+/*
+  [説明, 考察, 評価]
+  　述語の引数にアトムでなく変数を用いることで、「Pat の親は誰か」といったような
+  true, false だけでない質問ができることがわかった。
+  　問題(c)では、複数の述語を連言でつなげ、質問とすることができることがわかった。
+*/
+
+% -----------------------------------------------------------------------------------
+% (練習 1.5) parent と sister という関係を用いて aunt(X, Y) を定義する (テキスト 12 ページ)
+%
+% [述語の説明]
+%  aunt(X, Y): X は Y のおばさんである
+%
+% /* ここから回答 */
+
+aunt(X, Y) :- sister(X, Z), parent(Z, Y).
+
+% /* ここまで回答 */
+%
+
+/* 
+   (実行例)
+   
+  ?- aunt(X,Y).
+  X = liz,
+  Y = ann ;
+  X = liz,
+  Y = pat ;
+  X = ann,
+  Y = jim ;
+  false.
+
+  [説明, 考察, 評価]
+  　述語 aunt (おばさん)は「自分の親の姉妹」と定義できるので、
+  今回の回答のような定義を用いて表現した。実行例と親子関係の定義
+  を参照して、正しい結果が得られていることが確認できた。
+*/
+
+
+% -----------------------------------------------------------------------------------
+% (練習 1.6) もう 1 つの predecessor 関係
+%
+% /* ここからもう 1 つの predecessor */
+
+predecessor2(X, Z) :-
+ parent(X, Z).
+predecessor2(X, Z) :-
+ parent(Y, Z),
+ predecessor(X, Y).
+
+% /* ここまでもう 1 つの predecessor */
+%
+
+/*
+   (実行例)
+
+  ?- predecessor(X,Y).
+  X = pam,
+  Y = bob ;
+  X = tom,
+  Y = bob ;
+  X = tom,
+  Y = liz ;
+  X = bob,
+  Y = ann ;
+  X = bob,
+  Y = pat ;
+  X = pat,
+  Y = jim ;
+  X = pam,
+  Y = ann ;
+  X = pam,
+  Y = pat ;
+  X = pam,
+  Y = jim ;
+  X = tom,
+  Y = ann ;
+  X = tom,
+  Y = pat ;
+  X = tom,
+  Y = jim ;
+  X = bob,
+  Y = jim ;
+  false.
+
+  ?- predecessor2(X,Y).
+  X = pam,
+  Y = bob ;
+  X = tom,
+  Y = bob ;
+  X = tom,
+  Y = liz ;
+  X = bob,
+  Y = ann ;
+  X = bob,
+  Y = pat ;
+  X = pat,
+  Y = jim ;
+  X = pam,
+  Y = ann ;
+  X = tom,
+  Y = ann ;
+  X = pam,
+  Y = pat ;
+  X = tom,
+  Y = pat ;
+  X = bob,
+  Y = jim ;
+  X = pam,
+  Y = jim ;
+  X = tom,
+  Y = jim ;
+  false.
+ 
+  [説明, 考察, 評価]
+  　predecessor(X, Y). と predecessor2(X, Y). の質問結果を見ると、
+  順番は異なるが、代入例の組み合わせは一致しており、どちらも同じ代入例を
+  含んでいるため、新しく定義した predecessor2(X, Y) は適切な定義だと考えた。
+  　図 1.7 と照らし合わせると、
+      [X] -(parent)-> [Y] --(predecessor)-->  [Z]
+  を
+      [X] --(predecessor2)--> [Y] -(parent)-> [Z]
+  という形に
+*/
